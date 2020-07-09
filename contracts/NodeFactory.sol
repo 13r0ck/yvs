@@ -7,7 +7,7 @@ contract NodeFactory {
 
     function deploy(string calldata _name, string calldata _content) external {
         require(nodes[msg.sender] == Node(0), "Max Nodes for msg.sender address.");
-        nodes[msg.sender] = new Node(msg.sender, _name, _content);
+        nodes[msg.sender] = new Node(msg.sender, _name, _content, address(this));
     }
 
     function getNode(address _ownerAddress) public view returns(address) {
@@ -19,21 +19,21 @@ contract NodeFactory {
 Things that I need to test for:
 
     ## Relationships
-    1. Everything compiles 🗸
-    2. Node can be created 🗸
-    3. Multiple addresses can create individual nodes 🗸
-    4. A Node's address can be publicly found from owner's address. 🗸
-    5. An address cannot create multiple nodes 🗸
-    6. Node name/content/owner can be read 🗸
+    1. Everything compiles +
+    2. Node can be created +
+    3. Multiple addresses can create individual nodes +
+    4. A Node's address can be publicly found from owner's address. +
+    5. An address cannot create multiple nodes +
+    6. Node name/content/owner can be read +
     7. The Name/content can be modified by owner
     8. The name/content cannot be modified by non-owner
-    9. That weights can be modified correctly on each side 🗸
-    10. Weights cannot be greater than 100 nor less than 0 🗸
-    11. Weights to oneself cannot be changed 🗸
-    12. That relationship(s) can be added 🗸
-    13. An address cannot add a relationship to a node they do not own 🗸
-    14. A node cannot add a relationship to itself.
-    15. The relationship must be a valid node.
+    9. That weights can be modified correctly on each side +
+    10. Weights cannot be greater than 100 nor less than 0 +
+    11. Weights to oneself cannot be changed +
+    12. That relationship(s) can be added +
+    13. An address cannot add a relationship to a node they do not own +
+    14. A node cannot add a relationship to itself. +
+    15. The relationship must be a valid node. // I left of here, this is what I should work on tomorrow
     16. A relationship can be deleted by owner
     17. A relationship cannot be deleted by someone who is not the owner
     18. Those relationships are publicly readable

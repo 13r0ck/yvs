@@ -95,4 +95,9 @@ contract("Node test", async accounts => {
         let node0Address = await nf.getNode(accounts[0]);
         await truffleAssert.reverts(node0.addRelationship(node0Address, {from: accounts[0]}), 'Cannot create a relationship with oneself');
     });
+    it("should require relationship be to a vaild node", async () => {
+        let nf = await NodeFactory.deployed();
+        let node0 = await Node.at(await nf.gerNode(accounts[0]));
+        
+    })
 });
